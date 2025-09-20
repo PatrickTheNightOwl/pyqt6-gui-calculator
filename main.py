@@ -6,8 +6,7 @@ import os
 class Calculator(QMainWindow) :
     def __init__(self):
         super().__init__()
-        path = os.path.join(os.path.dirname(__file__),"calculator","gui","calculator.ui")
-        uic.loadUi(path,self)
+        uic.loadUi("gui/calculator.ui",self)
         self.output.setText("")
         self.error_state = False
         # self.buttonname = [
