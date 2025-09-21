@@ -6,36 +6,16 @@ import os
 class Calculator(QMainWindow) :
     def __init__(self):
         super().__init__()
-        uic.loadUi("gui/calculator.ui",self)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        uic.loadUi(os.path.join(current_dir, "gui", "calculator.ui"), self)
+        self.setWindowTitle("Calculator")
         self.output.setText("")
         self.error_state = False
-        # self.buttonname = [
-        #     "decimal","divide","multiply",
-        #     "minus","num0","num1","num2",
-        #     "num3","num4","num5","num6",
-        #     "num7","num8","num9","plus"
-        # ]
-        # self.buttonlist = []
-        # for name in self.buttonname:
-        #     btn = self.findChild(QPushButton, name)
-        #     if btn:
-        #         self.buttonlist.append(btn)
-        #         btn.clicked.connect(lambda checked, b=name: self.AddText(b))
         self.buttonlist = [
             self.num0, self.num1, self.num2, self.num3,
             self.num4,self.num5, self.num6, self.num7, self.num8, 
             self.num9
         ]
-        # self.num0.clicked.connect(lambda _, b="0":self.AddText(b))
-        # self.num1.clicked.connect(lambda _, b="1":self.AddText(b))
-        # self.num2.clicked.connect(lambda _, b="2":self.AddText(b))
-        # self.num3.clicked.connect(lambda _, b="3":self.AddText(b))
-        # self.num4.clicked.connect(lambda _, b="4":self.AddText(b))
-        # self.num5.clicked.connect(lambda _, b="5":self.AddText(b))
-        # self.num6.clicked.connect(lambda _, b="6":self.AddText(b))
-        # self.num7.clicked.connect(lambda _, b="7":self.AddText(b))
-        # self.num8.clicked.connect(lambda _, b="8":self.AddText(b))
-        # self.num9.clicked.connect(lambda _, b="9":self.AddText(b))
         for b in self.buttonlist:
             b.clicked.connect(lambda _, x=b.text()[-1]: self.AddText(x))
         self.decimal.clicked.connect(lambda _, b=".":self.AddText(b))
